@@ -1,6 +1,7 @@
 import React from "react";
 import { SignedIn, SignInButton, SignedOut } from '@clerk/nextjs';
 import { UserButton } from '@clerk/nextjs';
+import Link from "next/link";
 
 function Hero(){
     return(
@@ -10,6 +11,7 @@ function Hero(){
             </SignedOut>
             <SignedIn>
                 <UserButton/>
+                <Link href='/dashboard'>Dashboard</Link>
             </SignedIn>
         </div>
     )
