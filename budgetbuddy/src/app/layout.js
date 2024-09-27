@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider} from "@clerk/nextjs";
+import CurrencyConversion from "../../utils/currencyConversion";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,6 +21,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+    <CurrencyConversion>
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY} appearance={
       {
           layout: {
@@ -40,5 +42,6 @@ export default function RootLayout({ children }) {
         </body>
       </html>
     </ClerkProvider>
+    </CurrencyConversion>
   );
 }

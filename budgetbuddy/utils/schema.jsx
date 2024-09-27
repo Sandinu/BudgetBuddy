@@ -1,4 +1,4 @@
-import { serial, numeric, pgTable, integer, varchar, timestamp } from "drizzle-orm/mysql-core";
+import { serial, varchar, pgTable, timestamp, integer} from "drizzle-orm/pg-core"
 
 export const Budgets = pgTable('budgets',{
     id: serial('id').primaryKey(),
@@ -6,8 +6,8 @@ export const Budgets = pgTable('budgets',{
     amount : varchar('amount').notNull(),
     icon : varchar('icon'),
     createdBy : varchar('createdBy').notNull(),
-    createdAt : timestamp('createdAt').default(sql`now()`)
-});
+    createdAt : timestamp('createdAt').defaultNow()
+})
 
 export const Incomes = pgTable('incomes',{
     id: serial('id').primaryKey(),
@@ -15,7 +15,7 @@ export const Incomes = pgTable('incomes',{
     amount : varchar('amount').notNull(),
     icon : varchar('icon'),
     createdBy : varchar('createdBy').notNull(),
-});
+})
 
 export const Investments = pgTable('investments',{
     id: serial('id').primaryKey(),
@@ -23,12 +23,12 @@ export const Investments = pgTable('investments',{
     amount : varchar('amount').notNull(),
     icon : varchar('icon'),
     createdBy : varchar('createdBy').notNull(),
-});
+})
 
 export const Expenses = pgTable('expenses',{
     id: serial('id').primaryKey(),
     name: varchar('name').notNull(),
     amount : varchar('amount').notNull(),
-    budgetId : integer('budgetId').referrences(() => Budgets.id),
+    budgetId : integer('budgetId').references(() => Budgets.id),
     createdBy : varchar('createdBy').notNull(),
-});
+})
