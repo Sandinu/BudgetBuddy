@@ -1,11 +1,11 @@
 import React from "react";
-import CreateIncomes from './_components/CreateIncome';
+import IncomeList from "./_components/IncomeList";
 
 
 function Income(){
     return(
         <div>
-            <CreateIncomes/>
+            <IncomeList/>
         </div>
     )
 }

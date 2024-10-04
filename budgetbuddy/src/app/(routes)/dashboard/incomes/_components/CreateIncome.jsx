@@ -30,7 +30,7 @@ function CreateIncomes({refreshData}){
             name: name,
             amount: amount,
             icon: emoji,
-            createdBy: user.id,
+            createdBy: user?.primaryEmailAddress?.emailAddress,
         }).returning({insertedId: Incomes.id})
 
         if(result){
@@ -66,7 +66,7 @@ function CreateIncomes({refreshData}){
                 }
             }}>
                 <DialogTrigger asChild>
-                    <div className="bg-white p-10 rounded-2xl items-center flex flex-col border-2 border-dashed cursor-pointer hover:shadow-md">
+                    <div className="bg-white p-10 rounded-2xl items-center align-middle flex flex-col border-2 border-dashed cursor-pointer hover:shadow-md lg:h-[150px]">
                         <h2>+</h2>
                         <h2>ADD A NEW INCOME SOURCE</h2>
                     </div>
@@ -106,8 +106,6 @@ function CreateIncomes({refreshData}){
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
-
-            incomes
         </div>
     )
 }

@@ -15,6 +15,7 @@ export const Incomes = pgTable('incomes',{
     amount : varchar('amount').notNull(),
     icon : varchar('icon'),
     createdBy : varchar('createdBy').notNull(),
+    color : varchar('color').notNull(),
 })
 
 export const Investments = pgTable('investments',{
