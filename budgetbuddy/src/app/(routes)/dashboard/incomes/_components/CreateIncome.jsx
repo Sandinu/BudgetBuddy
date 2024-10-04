@@ -11,6 +11,7 @@ import { Incomes } from "../../../../../../utils/schema"
 import { useUser } from "@clerk/nextjs"
 import { toast } from "sonner"
 import { CurrencyContext } from "../../../../../../utils/currencyConversion"
+import { HexColorPicker } from "react-colorful"
 
 function CreateIncomes({refreshData}){
     const [emoji,setEmoji] = useState('😊');
@@ -22,6 +23,8 @@ function CreateIncomes({refreshData}){
     const [xamonut, setXAmount] = useState()
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const {user} = useUser();
+    const [color,setColor] = useState("#DCF2DF")
+    const [colorSelector, setColorSelector] = useState(false);
 
 
 
@@ -31,6 +34,7 @@ function CreateIncomes({refreshData}){
             amount: amount,
             icon: emoji,
             createdBy: user?.primaryEmailAddress?.emailAddress,
+            color : color,
         }).returning({insertedId: Incomes.id})
 
         if(result){
@@ -66,12 +70,12 @@ function CreateIncomes({refreshData}){
                 }
             }}>
                 <DialogTrigger asChild>
-                    <div className="bg-white p-10 rounded-2xl items-center align-middle flex flex-col border-2 border-dashed cursor-pointer hover:shadow-md lg:h-[150px]">
+                    <div className="p-10 rounded-2xl items-center align-middle flex flex-col border-2 border-dashed cursor-pointer hover:shadow-md lg:h-[150px]">
                         <h2>+</h2>
                         <h2>ADD A NEW INCOME SOURCE</h2>
                     </div>
                 </DialogTrigger>
-                <DialogContent className="bg-white/75 shadow-white/20 shadow-lg">
+                <DialogContent className=" shadow-white/20 shadow-lg">
                     <DialogHeader>
                         <DialogTitle>ADD A NEW INCOME SOURCE</DialogTitle>
                         <DialogDescription>
@@ -95,6 +99,13 @@ function CreateIncomes({refreshData}){
                                 <div className="mt-4">
                                     <h2 className="my-1">Amount [ {selectedCurrency} ] {selectedCurrency !== 'USD' && amount && `| USD ${(xamonut/exchangeRates[selectedCurrency]).toFixed(2)}`}</h2>
                                     <Input placeholder="Ex: Monthly Salary" className="bg-white/40 focus:bg-white" onChange={(e) => {amountToUSD(e); setXAmount(e.target.value)}}/>
+                                </div>
+                                <div className="flex flex-row items-center align-middle mt-4 gap-2">
+                                    <h2 className="flex">Color:</h2> 
+                                    <div style={{backgroundColor: color}} className="flex w-12 h-7 rounded-full border border-white hover:drop-shadow-sm cursor-pointer" onClick={()=>setColorSelector(!colorSelector)}></div>
+                                    {colorSelector && (
+                                        <div className="absolute z-20 left-36 shadow-lg"><HexColorPicker color={color} onChange={setColor} /></div>
+                                    )}
                                 </div>
                             </div>
                         </DialogDescription>
