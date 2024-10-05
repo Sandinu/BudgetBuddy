@@ -49,10 +49,10 @@ function DashboardLayout({children}){
             icon: (
               <PiggyBank/>,
             ),
-            href : "#"
+            href : "/dashboard/budgets"
           },
           {
-            title: "Budgets",
+            title: "Investments",
             icon: (
               <ChartCandlestick/>,
             ),

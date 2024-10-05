@@ -6,7 +6,8 @@ export const Budgets = pgTable('budgets',{
     amount : varchar('amount').notNull(),
     icon : varchar('icon'),
     createdBy : varchar('createdBy').notNull(),
-    createdAt : timestamp('createdAt').defaultNow()
+    createdAt : timestamp('createdAt').defaultNow(),
+    color : varchar('color').notNull(),
 })
 
 export const Incomes = pgTable('incomes',{
