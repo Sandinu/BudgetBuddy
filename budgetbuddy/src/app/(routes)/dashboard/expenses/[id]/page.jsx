@@ -21,6 +21,8 @@ import {
   } from "@/components/ui/alert-dialog";
 import {Button} from "@/components/ui/button";
 import BudgetItem from "../../budgets/_components/BudgetItem";
+import AddExpense from "./_components/AddExpense";
+import ExpenseList from "./_components/ExpenseList";
 
 function ExpenseScreen({params}){
     const {user} = useUser();
@@ -96,6 +98,10 @@ function ExpenseScreen({params}){
                 ) : (
                     <div className="h-[150px] bg-slate-200 animate-pulse rounded-lg w-full"></div>
                 )}
+                <AddExpense budgetId={params.id} user={user} refreshData={() => getBudgetInfo()}/>
+            </div>
+            <div>
+                <ExpenseList expensesList={expensesList} refreshData={() => getBudgetInfo()}/>
             </div>
         </div>
     )

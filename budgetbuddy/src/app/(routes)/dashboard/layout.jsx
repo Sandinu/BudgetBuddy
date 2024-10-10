@@ -70,7 +70,7 @@ function DashboardLayout({children}){
                 </div>
             </div>
             {children}
-            <div className='fixed bottom-3 mx-auto flex items-center text-center justify-center left-0 right-0'>
+            <div className='fixed bottom-3 mx-auto flex items-center text-center md:justify-center md:left-0 md:right-0 left-5'>
                 <FloatingDock items={links}/>
             </div>
         </div>
